@@ -16,16 +16,27 @@ export default function Home() {
     setIsMounted(true);
   }, []);
 
+  // ✅ FIXED: Only redirect IF connected
   useEffect(() => {
     if (!isMounted) return;
     if (connected) {
       router.push("/dashboard");
-    } else {
-      router.push("/");
     }
-  }, [connected, router, isMounted]);
+    // ✅ REMOVED: No else clause = No infinite loop!
+  }, [connected, isMounted, router]);
 
-  if (!isMounted) return null;
+  if (!isMounted) {
+    return (
+      <div className="min-h-screen bg-black flex items-center justify-center">
+        <div className="text-green-400 text-xl">Loading...</div>
+      </div>
+    );
+  }
+
+  // ✅ PROTECTED: Only show connect UI if NOT connected
+  if (connected) {
+    return null; // Will redirect automatically
+  }
 
   return (
     <div className="min-h-screen bg-black flex items-center justify-center p-4">
