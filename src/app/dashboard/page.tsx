@@ -120,7 +120,7 @@ export default function Dashboard() {
   };
 
   const saveName = () => {
-    if (tempName.trim()) {
+    if (tempName?.trim()) {
       setUserName(tempName.trim());
       setIsEditingName(false);
       setSuccessMessage(`✅ Name updated to "${tempName.trim()}"!`);
@@ -316,15 +316,15 @@ export default function Dashboard() {
 
   const isAddGoalDisabled = !goalTitle.trim() || !goalTarget || parseInt(goalTarget) <= 0;
   const isAmountDisabled = !amount || parseInt(amount) <= 0;
-  const isAddToGoalDisabled = showModal === 'addToGoal' && currentGoal && (
+  const isAddToGoalDisabled = !!(showModal === 'addToGoal' && currentGoal && (
     !amount || parseInt(amount) <= 0 ||
     parseInt(amount) > nairaBalance ||
     parseInt(amount) > (currentGoal.target - currentGoal.current)
-  );
-  const isWithdrawGoalDisabled = showModal === 'withdrawGoal' && currentGoal && (
+  ));
+  const isWithdrawGoalDisabled = !!(showModal === 'withdrawGoal' && currentGoal && (
     !amount || parseInt(amount) <= 0 ||
     parseInt(amount) > currentGoal.current
-  );
+  ));
 
   const recentTransactions = transactions.slice(-10);
 
@@ -417,8 +417,8 @@ export default function Dashboard() {
                 {/* GOALS */}
                 <div className="bg-gray-900 rounded-2xl p-4 md:p-6 mb-6 border border-gray-800">
                   <div className="flex justify-between items-center mb-4">
-                    <h3 className="text-white-400 font-medium">Active Savings Goals 🎯</h3>
-                    <button onClick={handleAddGoal} className="flex items-center gap-1 bg-green-500 text-white px-3 py-1.5 rounded-md text-sm font-medium hover:bg-green-600 transition">
+                    <h3 className="text-green-400 font-medium">Active Savings Goals 🎯</h3>
+                    <button onClick={handleAddGoal} className="flex items-center gap-1 bg-white-500 text-white px-3 py-1.5 rounded-md text-sm font-medium hover:bg-green-600 transition">
                       <AiOutlinePlus size={14} /> Add Goal
                     </button>
                   </div>
@@ -566,7 +566,7 @@ export default function Dashboard() {
                         </button>
                         <button
                           onClick={saveName}
-                          disabled={!tempName.trim()}
+                          disabled={!tempName?.trim()}
                           className="flex-1 bg-green-500 text-black py-2.5 rounded-lg font-medium hover:bg-green-600 disabled:bg-gray-700 disabled:cursor-not-allowed transition"
                         >
                           Save Name
