@@ -7,7 +7,6 @@ import {
 } from "@solana/wallet-adapter-react";
 import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 import { 
-  Connection, 
   PublicKey, 
   Transaction as SolanaTransaction, 
   SystemProgram,
@@ -408,7 +407,7 @@ export default function Dashboard() {
           }, ...prev]);
           
           const nairaAmount = Math.floor(numAmount * rates.usdNgn);
-          setSuccessMessage(`✅ $${numAmount.toFixed(2)} added to "${currentGoal.title}"!\n₦${nairaAmount.toLocaleString()}`);
+          setSuccessMessage(`✅ $${numAmount.toFixed(2)} added to '${currentGoal.title}'!\n₦${nairaAmount.toLocaleString()}`);
           setShowSuccess(true);
         }
         break;
@@ -441,7 +440,7 @@ export default function Dashboard() {
         }, ...prev]);
         
         const nairaAmount = Math.floor(numAmount * rates.usdNgn);
-        setSuccessMessage(`✅ $${numAmount.toFixed(2)} withdrawn from "${currentGoal!.title}"!\n₦${nairaAmount.toLocaleString()}`);
+        setSuccessMessage(`✅ $${numAmount.toFixed(2)} withdrawn from '${currentGoal!.title}'!\n₦${nairaAmount.toLocaleString()}`);
         setShowSuccess(true);
         break;
     }
@@ -471,7 +470,7 @@ export default function Dashboard() {
     setGoalTarget("");
     
     const nairaTarget = Math.floor(target * rates.usdNgn);
-    setSuccessMessage(`🎉 "${newGoal.title}" created!\nTarget: $${target.toFixed(2)} (₦${nairaTarget.toLocaleString()})`);
+    setSuccessMessage(`🎉 '${newGoal.title}' created!\nTarget: $${target.toFixed(2)} (₦${nairaTarget.toLocaleString()})`);
     setShowSuccess(true);
   };
 
