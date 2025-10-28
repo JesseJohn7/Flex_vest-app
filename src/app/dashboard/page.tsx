@@ -70,7 +70,7 @@ export default function Dashboard() {
   const [isMounted, setIsMounted] = useState(false);
   const [activeTab, setActiveTab] = useState("home");
   const [showBalance, setShowBalance] = useState(true);
-  const [userName, setUserName] = useState("Jesse");
+  const [userName, setUserName] = useState("Flexvester");
   const [currency, setCurrency] = useState("naira");
   const [isEditingName, setIsEditingName] = useState(false);
   const [tempName, setTempName] = useState(userName);
