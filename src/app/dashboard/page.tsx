@@ -597,12 +597,54 @@ export default function Dashboard() {
                 <div className="bg-gray-900 rounded-2xl p-4 md:p-6 mb-6 border border-gray-800">
                   <div className="flex justify-between items-center mb-6">
                     <h3 className="text-gray-300 text-sm">Wallet Balance</h3>
-                    <button 
-                      onClick={() => setCurrency(currency === "naira" ? "usdt" : "naira")} 
-                      className="bg-gray-800 px-3 py-1.5 rounded-md text-xs hover:bg-gray-700 text-gray-300"
-                    >
-                      {currency === "naira" ? "View in USDT" : "View in ₦"}
-                    </button>
+                    <button
+    onClick={() => setCurrency(currency === "naira" ? "usdt" : "naira")}
+    className={`
+      flex items-center gap-2 bg-gray-800 hover:bg-gray-700
+      px-3 py-1.5 rounded-md text-xs font-medium text-gray-300
+      hover:text-white transition-all duration-200
+      focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-1 focus:ring-offset-black
+    `}
+    aria-label={`Switch to ${currency === "naira" ? "USDC" : "Naira"}`}
+  >
+    {/* Always show the correct icon + label */}
+    {currency === "naira" ? (
+      <>
+        {/* Nigerian Flag */}
+        <span className="inline-block w-4 h-3 rounded-sm overflow-hidden shadow-sm">
+          <svg width="20" height="15" viewBox="0 0 3 2" fill="none">
+            <rect width="1" height="2" fill="#008751" />
+            <rect x="1" width="1" height="2" fill="#FFFFFF" />
+            <rect x="2" width="1" height="2" fill="#008751" />
+          </svg>
+        </span>
+        <span className="tracking-tight">₦ Naira</span>
+      </>
+    ) : (
+      <>
+        {/* USDC Logo */}
+        <span className="inline-flex items-center justify-center w-4 h-4">
+          <svg width="16" height="16" viewBox="0 0 32 32" fill="none">
+            <circle cx="16" cy="16" r="14" stroke="currentColor" strokeWidth="2" />
+            <text x="16" y="20" fontSize="11" textAnchor="middle" fill="currentColor" fontWeight="bold">
+              C
+            </text>
+          </svg>
+        </span>
+        <span className="tracking-tight">USDC</span>
+      </>
+    )}
+
+    {/* Down Arrow – tells user it's a toggle/dropdown */}
+    <svg
+      className="w-3 h-3 ml-1 text-gray-400"
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+    >
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+    </svg>
+  </button>
                   </div>
 
                   <div className="flex items-center mb-6">
