@@ -1,66 +1,64 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+"use client";
+
+import { motion } from "framer-motion";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 
 export default function Home() {
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className={styles.intro}>
-          <h1>To get started, edit the page.tsx file.</h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <main className="relative min-h-screen flex items-center justify-center bg-gradient-to-b from-[#0b0b0b] via-[#0f0f12] to-[#0b0b0b] text-white px-5 sm:px-8 md:px-12">
+      {/* Background Glow */}
+      <div className="absolute inset-0 bg-gradient-to-tr from-indigo-600/10 via-purple-500/10 to-transparent blur-3xl" />
+
+      <div className="relative z-10 flex flex-col items-center text-center w-full max-w-3xl">
+        {/* Heading */}
+        <motion.h1
+          initial={{ opacity: 0, y: 25 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="font-extrabold leading-tight mb-4 text-[2rem] sm:text-[2.6rem] md:text-[3.5rem] lg:text-[4rem]"
+        >
+          Welcome to{" "}
+          <span className="bg-gradient-to-r from-indigo-400 to-violet-600 bg-clip-text text-transparent">
+            FlexVest
+          </span>
+        </motion.h1>
+
+        {/* Subtitle */}
+        <motion.p
+          initial={{ opacity: 0, y: 25 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.1 }}
+          className="text-gray-400 leading-relaxed mb-8 text-[0.95rem] sm:text-base md:text-lg max-w-md mx-auto"
+        >
+          A next-generation dashboard built with Next.js & Framer Motion —
+          sleek, dark, and engineered to impress.
+        </motion.p>
+
+        {/* CTA Button */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, delay: 0.2 }}
+        >
+          <Link
+            href="/dashboard"
+            className="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3 sm:py-3.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 active:scale-95 transition-transform duration-150 font-semibold shadow-lg text-sm sm:text-base w-[200px] sm:w-auto"
           >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+            Enter Dashboard <ArrowRight size={18} />
+          </Link>
+        </motion.div>
+
+        {/* Footer Note */}
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 0.5 }}
+          transition={{ delay: 1.2 }}
+          className="mt-10 text-xs sm:text-sm text-gray-500"
+        >
+          Designed with ❤️ by Jesse • 2025
+        </motion.p>
+      </div>
+    </main>
   );
 }
