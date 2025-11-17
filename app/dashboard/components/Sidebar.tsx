@@ -1,23 +1,29 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Home, Clock, PiggyBank, User } from "lucide-react";
+import { DashboardSection } from "./DashboardLayout"; // import the union type
 
-const navItems = [
+interface NavItem {
+  id: DashboardSection;
+  name: string;
+  icon: React.ElementType;
+}
+
+const navItems: NavItem[] = [
   { id: "home", name: "Home", icon: Home },
   { id: "history", name: "History", icon: Clock },
   { id: "savings", name: "Savings", icon: PiggyBank },
   { id: "profile", name: "Profile", icon: User },
 ];
 
-export default function Sidebar({
-  active,
-  setActive,
-}: {
-  active: string;
-  setActive: (s: string) => void;
-}) {
+interface SidebarProps {
+  active: DashboardSection;
+  setActive: React.Dispatch<React.SetStateAction<DashboardSection>>;
+}
+
+export default function Sidebar({ active, setActive }: SidebarProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (

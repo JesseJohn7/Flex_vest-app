@@ -1,16 +1,22 @@
 "use client";
 
 import Sidebar from "./Sidebar";
+import React from "react";
+
+// Define the exact union type for your sections
+export type DashboardSection = "home" | "history" | "savings" | "profile";
+
+interface DashboardLayoutProps {
+  children: React.ReactNode;
+  active: DashboardSection;
+  setActive: React.Dispatch<React.SetStateAction<DashboardSection>>;
+}
 
 export default function DashboardLayout({
   children,
   active,
   setActive,
-}: {
-  children: React.ReactNode;
-  active: string;
-  setActive: (s: string) => void;
-}) {
+}: DashboardLayoutProps) {
   return (
     <div className="relative min-h-screen flex flex-col sm:flex-row bg-[#0b0b0b] text-white">
       {/* Sidebar */}
